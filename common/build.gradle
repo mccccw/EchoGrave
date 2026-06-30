@@ -1,0 +1,3 @@
+plugins { id 'java-library' }
+tasks.register('logicTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.openai.echograve.EchoGraveTest' }
+check.dependsOn logicTest

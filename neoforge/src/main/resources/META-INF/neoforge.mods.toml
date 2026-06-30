@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+[[mods]]
+modId="echograve"
+version="${mod_version}"
+displayName="EchoGrave"
+description='''English grave, /back, webhook and grave compass mod.'''

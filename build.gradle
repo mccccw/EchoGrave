@@ -1,0 +1,22 @@
+plugins { id 'java' }
+
+ext.supportedMinecraftVersions = ['1.20.1','1.20.4','1.21.1']
+ext.targetMinecraftVersion = findProperty('mcVersion') ?: '1.20.1'
+if (!supportedMinecraftVersions.contains(targetMinecraftVersion)) throw new GradleException("Unsupported mcVersion ${targetMinecraftVersion}")
+
+allprojects { group='dev.openai.echograve'; version="1.0.0+mc${rootProject.ext.targetMinecraftVersion}" }
+subprojects {
+  apply plugin:'java'
+  tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8'; options.release = 17 }
+}
+
+tasks.register('buildAllVersions') {
+  group='build'; description='Builds Fabric and NeoForge jars for every supported Minecraft version.'
+  dependsOn supportedMinecraftVersions.collect { v -> [":fabric:jarMc${v.replace('.','_')}", ":neoforge:jarMc${v.replace('.','_')}"] }.flatten()
+}
+
+tasks.register('packageDistribution', Zip) {
+  dependsOn 'buildAllVersions'
+  archiveFileName='EchoGrave-source-and-jars.zip'; destinationDirectory=file('build-output')
+  from('.') { exclude '.git/**', '**/build/**', 'build-output/**', '.gradle/**' }
+}
