@@ -1,0 +1,1 @@
+EchoGrave is a Fabric and NeoForge grave mod that stores player items and optional XP in graves on death, adds a Grave Compass, /back support, trusted grave access, configurable decay, localization, and optional async webhook notifications.

@@ -1,0 +1,16 @@
+plugins { id 'java-library' }
+
+tasks.named('test') {
+    // EchoGraveTest is a dependency-free assertion runner executed by logicTest below,
+    // not a JUnit/TestNG test class. Disable the standard framework-based test task so
+    // Gradle does not fail when it discovers test sources but no framework tests.
+    enabled = false
+}
+
+tasks.register('logicTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.openai.echograve.EchoGraveTest'
+}
+
+check.dependsOn logicTest
