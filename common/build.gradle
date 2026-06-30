@@ -1,4 +1,5 @@
 plugins { id 'java-library' }
+ codex/build-minecraft-mod-echograve-zo6ey7
 
 tasks.named('test') {
     // EchoGraveTest is a dependency-free assertion runner executed by logicTest below,
@@ -13,4 +14,7 @@ tasks.register('logicTest', JavaExec) {
     mainClass = 'dev.openai.echograve.EchoGraveTest'
 }
 
+
+tasks.register('logicTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.openai.echograve.EchoGraveTest' }
+ main
 check.dependsOn logicTest
