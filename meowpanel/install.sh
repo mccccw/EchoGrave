@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # MEOWPANEL 0.1.0 verified bootstrap installer.
 set -Eeuo pipefail
-RELEASE_SHA256="87dd52db38bf07be736882aa919ad6a3bbae237344e31f0f6901b50d9359a88b"
-RELEASE_URL="https://raw.githubusercontent.com/mccccw/EchoGrave/64610d9fc36f6cb2a862892ecea0c0e6c8bec104/meowpanel/release/meowpanel-0.1.0-local.tar.gz.b64"
+RELEASE_SHA256="222222c4282be14e2cf5f0f959112c80cfa7d960c394a409c38e53dc0a12f1b3"
+RELEASE_URL="https://raw.githubusercontent.com/mccccw/EchoGrave/a6ed769193cff35f79f88b4dad84737f816a6662/meowpanel/release/meowpanel-0.1.0-local.tar.gz.b64"
 release_log(){ printf '[MEOWPANEL bootstrap] %s\n' "$*"; }
 [ "${EUID}" -eq 0 ] || { release_log "Run with sudo bash"; exit 1; }
 command -v apt-get >/dev/null || { release_log "Raspberry Pi OS / Debian with apt-get is required"; exit 1; }
